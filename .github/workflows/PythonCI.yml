@@ -42,6 +42,7 @@ jobs:
     - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: fc0e8618eeb18ce2f74afeaa0a53b3cd2aa727da3941c04ae265b6c59d4083c1
+      with:  
         coverageCommand: make test-coverage
           
           
