@@ -1,18 +1,21 @@
 import requests
 import os
 import re
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
-
-def make_file_name(url):
-    cut_scheme = re.sub('http[s]?://', '', url)
-    return re.sub('\W|_', '-', cut_scheme) + '.html'
+from page_loader.make_name_and_path import \
+    make_page_file_name, make_dir_name, make_file_name, make_path
+from page_loader.save_mode import \
+    save_page_html, save_list_img_link, save_files
 
 
 def download(url, path):
-    page = requests.get(url)
-    file_name = make_file_name(url)
-    os.chdir(path)
-    with open(file_name, 'w') as file:
-        file.write(page.text) 
-    full_path_to_file = os.path.join(path, file_name)
-    return full_path_to_file
+    file_name = make_page_file_name(url)
+    file_path = make_path(path, file_name)
+    save_page_html(url, file_path)
+    dir_name = make_dir_name(url)
+    os.makedirs(make_path(path, dir_name))
+    save_files(url, make_path(path, dir_name))
+
+    return file_path
