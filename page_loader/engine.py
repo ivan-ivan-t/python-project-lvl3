@@ -15,7 +15,9 @@ def download(url, path):
     file_path = make_path(path, file_name)
     save_page_html(url, file_path)
     dir_name = make_dir_name(url)
-    os.makedirs(make_path(path, dir_name))
-    save_files(url, make_path(path, dir_name))
+    dir_path = make_path(path, dir_name)
+    if not os.path.isdir(dir_path):
+        os.makedirs(dir_path)
+    save_files(url, dir_path)
 
     return file_path
