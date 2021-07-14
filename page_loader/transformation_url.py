@@ -21,9 +21,4 @@ def make_file_name(url):
 
 def make_dir_name(url):
     without_scheme = cut_scheme(url)
-    return make_kebab_case(without_scheme) + '_files'    
-
-
-def make_path(root_dir, name):
-    path = os.path.join(root_dir, name)
-    return path    
+    return make_kebab_case(without_scheme) + '_files'
