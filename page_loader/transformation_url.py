@@ -8,7 +8,10 @@ def cut_scheme(url):
 
 
 def make_kebab_case(name):
-    return re.sub('\W|_', '-', name)
+    name = re.sub('\W|_', '-', name)
+    if len(name) > 50:
+        return name[:50]
+    return name
 
 
 def make_file_name(url):
