@@ -2,6 +2,8 @@ import os
 import re
 
 
+MAX_LEN_NAME = 50
+
 
 def cut_scheme(url):
     return re.sub('http[s]?://', '', url)
@@ -9,8 +11,8 @@ def cut_scheme(url):
 
 def make_kebab_case(name):
     name = re.sub('\W|_', '-', name)
-    if len(name) > 50:
-        return name[:50]
+    if len(name) > MAX_LEN_NAME:
+        return name[:MAX_LEN_NAME]
     return name
 
 

@@ -9,17 +9,32 @@ import requests_mock
 import filecmp
 
 
-TEST_URL = 'https://upload.wikimedia.org/wikipedia/commons/5/54/Mast-Roenne-Wellsee.jpg'
-TEST_URL2 = 'https://www.mozilla.org/ru/firefox/'
-RESOURCES = ['https://upload.wikimedia.org/wikipedia/commons/5/54/Mast-Roenne-Wellsee.jpg', 'https://www.mozilla.org/ru/firefox/']
+TEST_HTML = 'tests/fixtures/test_html.html'
+HTML_WITH_LL = 'tests/fixtures/html_with_local_links.html'
+
+
+def read_file(path, mode):
+    with open(path, mode) as file:
+        return file.read()
+
 
 def test_download():
     with tempfile.TemporaryDirectory() as test_dir:
-        with requests_mock.Mocker() as m:
-            m.get('https://ru.hexlet.io/courses', text='resp')
+        with requests_mock.Mocker() as mock:
+            mock.get('https://ru.hexlet.io/courses', text=read_file(TEST_HTML, 'r'))
+            mock.get('https://ru.hexlet.io/courses', text=read_file('tests/fixtures/ru-hexlet-io-courses.html', 'r'))
+            mock.get('https://ru.hexlet.io/lessons.rss', content=read_file('tests/fixtures/ru-hexlet-io-lessons.rss','rb'))
             file_path = download('https://ru.hexlet.io/courses', test_dir)
-            with open(file_path) as file:
-                assert 'resp\n' == file.read()
+            with open(file_path) as file1:
+                with open(HTML_WITH_LL) as file2:
+                    assert file1.read() == file2.read()
+            html_file = 'ru-hexlet-io-courses.html'    
+            assert html_file == os.path.split(file_path)[1]
+            dir_name = 'ru-hexlet-io-courses_files'
+            assert os.path.isdir(test_dir + '/' + dir_name) == True
+            
+
+
 
 
 def test_make_file_name():
@@ -36,11 +51,10 @@ def test_make_dir_name():
 
 def test_save_file():
     with tempfile.TemporaryDirectory() as test_dir:
-        img = requests.get(TEST_URL).content
-        img_file_path = os.path.join(test_dir, 'test.html')
-        save_file(img, img_file_path)
-        assert os.path.exists(img_file_path) == True
-        assert filecmp.cmp(img_file_path, 'tests/fixtures/test_file.jpg', shallow=True)   
+        img_file_path = os.path.join(test_dir, 'test.jpg')
+        save_file('/home/mand/Загрузки/test.jpg', img_file_path)
+        assert os.path.isfile(img_file_path) == True
+        #assert filecmp.cmp(img_file_path, 'tests/fixtures/test_file.jpg', shallow=True)   
 
 
 def test_get_resources_and_change_html():

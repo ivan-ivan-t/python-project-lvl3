@@ -13,7 +13,7 @@ def download(url, path):
     dir_name = make_dir_name(url)
     dir_path = os.path.join(path, dir_name)
     resources, html_with_local_links = get_resources_and_change_html(url, response, dir_path)
-    save_file(html_with_local_links, os.path.join(path, file_name))
+    save_file(html_with_local_links, file_path)
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
     download_resources(resources, dir_path)

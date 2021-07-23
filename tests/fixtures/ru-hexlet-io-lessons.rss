@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Новые уроки на Хекслете</title>
+    <description>Практические уроки по программированию</description>
+    <link>https://ru.hexlet.io/</link>
+    <webMaster>info@hexlet.io</webMaster>
+    <item>
+      <title>Kubernetes / DevOps: Деплой и эксплуатация</title>
+      <guid isPermaLink="false">2053</guid>
+      <link>https://ru.hexlet.io/courses/devops-deploy/lessons/kubernetes/theory_unit</link>
+      <description>Цель: Познакомиться с Kubernetes</description>
+      <pubDate>Wed, 14 Jul 2021 11:36:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>Errors-handling / DevOps: Деплой и эксплуатация</title>
+      <guid isPermaLink="false">2054</guid>
+      <link>https://ru.hexlet.io/courses/devops-deploy/lessons/errors-handling/theory_unit</link>
+      <description>Цель: Научиться отслеживать ошибки</description>
+      <pubDate>Wed, 14 Jul 2021 11:36:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>Storybooks / Фронтенд: Браузер и JSDOM</title>
+      <guid isPermaLink="false">2050</guid>
+      <link>https://ru.hexlet.io/courses/frontend-testing-browser/lessons/storybooks/theory_unit</link>
+      <description>Цель: Познакомиться с инструментом для разработки пользовательских интерфейсов Storybook.</description>
+      <pubDate>Tue, 13 Jul 2021 13:31:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>CI / Фронтенд: Базовое тестирование</title>
+      <guid isPermaLink="false">2049</guid>
+      <link>https://ru.hexlet.io/courses/frontend-testing-basics/lessons/ci/theory_unit</link>
+      <description>Цель: Познакомиться с непрерывной интеграцией.</description>
+      <pubDate>Tue, 13 Jul 2021 13:27:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>Динамическое программирование / Основы алгоритмов и структур данных</title>
+      <guid isPermaLink="false">2045</guid>
+      <link>https://ru.hexlet.io/courses/js-basic-algorithms/lessons/dynamic-programming/theory_unit</link>
+      <description>Цель: Научиться решать задачи с помощью техники динамического программирования</description>
+      <pubDate>Tue, 13 Jul 2021 10:00:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>Алгоритмическая сложность / Основы алгоритмов и структур данных</title>
+      <guid isPermaLink="false">2041</guid>
+      <link>https://ru.hexlet.io/courses/js-basic-algorithms/lessons/algorithm-complexity/theory_unit</link>
+      <description>Цель: Научиться анализировать сложность алгоритмов</description>
+      <pubDate>Tue, 13 Jul 2021 10:00:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>Алгоритмы сортировки / Основы алгоритмов и структур данных</title>
+      <guid isPermaLink="false">2046</guid>
+      <link>https://ru.hexlet.io/courses/js-basic-algorithms/lessons/sorting/theory_unit</link>
+      <description>Цель: Научиться реализовывать алгоритмы сортировки</description>
+      <pubDate>Tue, 13 Jul 2021 10:00:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Бинарный поиск / Основы алгоритмов и структур данных</title>
+      <guid isPermaLink="false">2043</guid>
+      <link>https://ru.hexlet.io/courses/js-basic-algorithms/lessons/binary-search/theory_unit</link>
+      <description>Цель: Научиться реализовывать алгоритм бинарного поиска</description>
+      <pubDate>Tue, 13 Jul 2021 09:59:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>Введение / Основы алгоритмов и структур данных</title>
+      <guid isPermaLink="false">2044</guid>
+      <link>https://ru.hexlet.io/courses/js-basic-algorithms/lessons/intro/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 13 Jul 2021 09:59:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>Мапы / Java: Коллекции</title>
+      <guid isPermaLink="false">2038</guid>
+      <link>https://ru.hexlet.io/courses/java-collections/lessons/maps/theory_unit</link>
+      <description>Цель: Научиться работать со словарями.</description>
+      <pubDate>Mon, 12 Jul 2021 10:19:07 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
