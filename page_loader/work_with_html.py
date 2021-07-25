@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
 import os
 from page_loader.transformation_url import make_file_name, make_dir_name
+from progress.bar import IncrementalBar
 
 
 TAG_ATTRS = {'img': 'src', 'link': 'href', 'script': 'src'}
@@ -11,9 +12,11 @@ def get_resources_and_change_html(url, page, dir_path):
     list_links = []
     soup = BeautifulSoup(page.content, "html.parser")
     tag_list = soup.find_all(TAG_ATTRS.keys())
+    bar = IncrementalBar('Download links', max=len(tag_list))
     for tag in tag_list:
         source_link = tag.get(TAG_ATTRS[tag.name])
         if not source_link:
+            bar.next()
             continue
         if (
             not urlparse(source_link).netloc
@@ -22,5 +25,7 @@ def get_resources_and_change_html(url, page, dir_path):
             source_link = urljoin(url, source_link)
             list_links.append(source_link)
             tag[TAG_ATTRS[tag.name]] = os.path.join(make_dir_name(url), make_file_name(source_link))
+        bar.next()
+    bar.finish()
     html_with_local_links = soup.prettify(formatter="html5")
     return list_links, html_with_local_links

@@ -1,12 +1,8 @@
 import os
-import requests
 import tempfile
 from page_loader.engine import download
 from page_loader.transformation_url import make_file_name, make_dir_name
-from page_loader.saves import save_file, download_resources
-from page_loader.work_with_html import get_resources_and_change_html
 import requests_mock
-import filecmp
 
 
 URL = 'https://tests'
@@ -19,7 +15,6 @@ HTML_URL = [
     'https://ru.hexlet.io/courses.html',
     'https://ru.hexlet.io/courses'
 ]
-
 
 def read_file(path, mode):
     with open(path, mode) as file:
