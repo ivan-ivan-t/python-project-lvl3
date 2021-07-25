@@ -1,7 +1,6 @@
 import os
 import re
 
-
 MAX_LEN_NAME = 50
 
 
@@ -10,7 +9,7 @@ def cut_scheme(url):
 
 
 def make_kebab_case(name):
-    name = re.sub('\W|_', '-', name)
+    name = re.sub('\\W|_', '-', name)
     if len(name) > MAX_LEN_NAME:
         return name[:MAX_LEN_NAME]
     return name
@@ -21,7 +20,7 @@ def make_file_name(url):
     path, extension = os.path.splitext(without_scheme)
     if not extension:
         extension = '.html'
-    return make_kebab_case(path) + extension 
+    return make_kebab_case(path) + extension
 
 
 def make_dir_name(url):

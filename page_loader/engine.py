@@ -6,7 +6,6 @@ from page_loader.transformation_url import make_dir_name, make_file_name
 from page_loader.saves import save_file, download_resources
 from page_loader.work_with_html import get_resources_and_change_html
 
-
 logger = get_logger(__name__)
 
 
@@ -32,5 +31,5 @@ def download(url, path):
             logger.critical(error)
             raise OSError()
     download_resources(resources, dir_path)
-    logger.info(f'Page was download')
+    logger.info('Page was download')
     return file_path

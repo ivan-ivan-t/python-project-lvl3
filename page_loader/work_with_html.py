@@ -19,8 +19,7 @@ def get_resources_and_change_html(url, page, dir_path):
             bar.next()
             continue
         if (
-            not urlparse(source_link).netloc
-            or urlparse(source_link).netloc == urlparse(url).netloc
+            not urlparse(source_link).netloc or urlparse(source_link).netloc == urlparse(url).netloc
         ):
             source_link = urljoin(url, source_link)
             list_links.append(source_link)
