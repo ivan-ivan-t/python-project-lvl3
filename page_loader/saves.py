@@ -10,6 +10,6 @@ def save_file(source, path):
 
 
 def download_resources(resources, path):
-    for i in resources:
-        content = requests.get(i).content
-        save_file(content, os.path.join(path, make_file_name(i)))
+    for link in resources:
+        content = requests.get(link).content
+        save_file(content, os.path.join(path, make_file_name(link)))

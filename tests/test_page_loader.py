@@ -9,8 +9,16 @@ import requests_mock
 import filecmp
 
 
+URL = 'https://tests'
 TEST_HTML = 'tests/fixtures/test_html.html'
-HTML_WITH_LL = 'tests/fixtures/html_with_local_links.html'
+HTML_LOCAL_LINKS = 'tests/fixtures/html_with_local_links.html'
+RESOURCE = 'https://tests/file.png'
+LOCAL_RESOURCE = 'tests/fixtures/file.jpg'
+
+HTML_URL = [
+    'https://ru.hexlet.io/courses.html',
+    'https://ru.hexlet.io/courses'
+]
 
 
 def read_file(path, mode):
@@ -21,52 +29,33 @@ def read_file(path, mode):
 def test_download():
     with tempfile.TemporaryDirectory() as test_dir:
         with requests_mock.Mocker() as mock:
-            mock.get('https://ru.hexlet.io/courses', text=read_file(TEST_HTML, 'r'))
-            mock.get('https://ru.hexlet.io/courses', text=read_file('tests/fixtures/ru-hexlet-io-courses.html', 'r'))
-            mock.get('https://ru.hexlet.io/lessons.rss', content=read_file('tests/fixtures/ru-hexlet-io-lessons.rss','rb'))
-            file_path = download('https://ru.hexlet.io/courses', test_dir)
-            with open(file_path) as file1:
-                with open(HTML_WITH_LL) as file2:
-                    assert file1.read() == file2.read()
-            html_file = 'ru-hexlet-io-courses.html'    
-            assert html_file == os.path.split(file_path)[1]
-            dir_name = 'ru-hexlet-io-courses_files'
-            assert os.path.isdir(test_dir + '/' + dir_name) == True
+            mock.get(URL, text=read_file(TEST_HTML, 'r'))
+            mock.get(RESOURCE, content=read_file(LOCAL_RESOURCE, 'rb'))
+            file_path = download(URL, test_dir)
+            file1 = read_file(file_path, 'r')
+            file2 = read_file(HTML_LOCAL_LINKS, 'r')
+            assert file1 == file2
+            name_file = 'tests.html'
+            assert name_file == os.path.split(file_path)[1]
+            dir_path = os.path.join(test_dir, 'tests_files')
+            assert os.path.isdir(dir_path) == True
+            path_to_file = os.path.join(dir_path, 'tests-file.png')
+            assert os.path.isfile(path_to_file) == True
+            assert read_file(path_to_file, 'rb') == read_file(LOCAL_RESOURCE, 'rb')
             
-
-
-
 
 def test_make_file_name():
     expected = 'ru-hexlet-io-courses.html'
-    file_name = make_file_name('https://ru.hexlet.io/courses')
-    assert expected == file_name
+    for url in HTML_URL:
+        assert make_file_name(url) == expected
 
 
 def test_make_dir_name():
     expected = 'ru-hexlet-io-courses_files'
-    dir_name = make_dir_name('https://ru.hexlet.io/courses')
-    assert expected == dir_name
+    assert make_dir_name('https://ru.hexlet.io/courses') == expected
 
 
-def test_save_file():
-    with tempfile.TemporaryDirectory() as test_dir:
-        img_file_path = os.path.join(test_dir, 'test.jpg')
-        save_file('/home/mand/Загрузки/test.jpg', img_file_path)
-        assert os.path.isfile(img_file_path) == True
-        #assert filecmp.cmp(img_file_path, 'tests/fixtures/test_file.jpg', shallow=True)   
 
 
-def test_get_resources_and_change_html():
-    with tempfile.TemporaryDirectory() as test_dir:
-        html = requests.get(TEST_URL2)
-        path_html_whit_local_links = os.path.join(test_dir, 'test.html')
-        _, html_whit_local_links = get_resources_and_change_html(TEST_URL, html, path_html_whit_local_links)
-        save_file(html_whit_local_links, path_html_whit_local_links)
-        assert os.path.exists(path_html_whit_local_links) == True
 
 
-def test_download_resources():
-    with tempfile.TemporaryDirectory() as test_dir:
-        download_resources(RESOURCES, test_dir)
-        assert os.path.exists(os.path.join(test_dir, make_file_name(TEST_URL))) == True
