@@ -4,7 +4,6 @@ from page_loader.engine import download
 from page_loader.transformation_url import make_file_name, make_dir_name
 import requests_mock
 
-
 URL = 'https://tests'
 TEST_HTML = 'tests/fixtures/test_html.html'
 HTML_LOCAL_LINKS = 'tests/fixtures/html_with_local_links.html'
@@ -15,6 +14,7 @@ HTML_URL = [
     'https://ru.hexlet.io/courses.html',
     'https://ru.hexlet.io/courses'
 ]
+
 
 def read_file(path, mode):
     with open(path, mode) as file:
@@ -37,7 +37,7 @@ def test_download():
             path_to_file = os.path.join(dir_path, 'tests-file.png')
             assert os.path.isfile(path_to_file) == True
             assert read_file(path_to_file, 'rb') == read_file(LOCAL_RESOURCE, 'rb')
-            
+
 
 def test_make_file_name():
     expected = 'ru-hexlet-io-courses.html'
@@ -48,9 +48,3 @@ def test_make_file_name():
 def test_make_dir_name():
     expected = 'ru-hexlet-io-courses_files'
     assert make_dir_name('https://ru.hexlet.io/courses') == expected
-
-
-
-
-
-
