@@ -6,3 +6,4 @@
 page-loader URL -o PATH
 
 ### how it works
+[![asciicast](https://asciinema.org/a/427312.svg)](https://asciinema.org/a/427312)
