@@ -8,7 +8,7 @@ from progress.bar import IncrementalBar
 TAG_ATTRS = {'img': 'src', 'link': 'href', 'script': 'src'}
 
 
-def get_resources_and_change_html(url, page, dir_path):
+def get_resources_and_change_html(url, page):
     list_links = []
     soup = BeautifulSoup(page.content, "html.parser")
     tag_list = soup.find_all(TAG_ATTRS.keys())

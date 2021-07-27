@@ -14,13 +14,18 @@ def download(url, path):
     if not os.path.isdir(path):
         logger.worning("An output directory doesn't exist!")
         raise NameError('Missing directory')
-    response = requests.get(url)
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as error:
+        logger.critical(error)
+        raise requests.exceptions.RequestException()
     file_name = make_file_name(url)
     file_path = os.path.join(path, file_name)
     dir_name = make_dir_name(url)
     dir_path = os.path.join(path, dir_name)
     logger.debug('get resource and change html')
-    resources, html_with_local_links = get_resources_and_change_html(url, response, dir_path)
+    resources, html_with_local_links = get_resources_and_change_html(url, response)
     save_file(html_with_local_links, file_path)
     logger.debug('loading files complete')
     if not os.path.exists(dir_path):
