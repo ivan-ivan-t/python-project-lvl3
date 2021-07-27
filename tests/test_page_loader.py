@@ -33,9 +33,9 @@ def test_download():
             name_file = 'tests.html'
             assert name_file == os.path.split(file_path)[1]
             dir_path = os.path.join(test_dir, 'tests_files')
-            assert os.path.isdir(dir_path) == True
+            assert os.path.isdir(dir_path)
             path_to_file = os.path.join(dir_path, 'tests-file.png')
-            assert os.path.isfile(path_to_file) == True
+            assert os.path.isfile(path_to_file)
             assert read_file(path_to_file, 'rb') == read_file(LOCAL_RESOURCE, 'rb')
 
 
